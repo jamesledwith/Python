@@ -1,11 +1,11 @@
 #Exercise 2: AtBash Cipher by A00196141
 
 from string import ascii_lowercase
-#create an empty string for the choice and cypherletters
+#create an empty string for the choice 
 choice = ""
-cypherletters = ""
 
 while choice != "q": 
+    cypherletters = ""
     choice = input("Enter a message to encipher or q to quit: ")
     #for each character in the users input, converted to lowercase 
     for letter in choice.lower():
@@ -22,5 +22,3 @@ while choice != "q":
             cypherletters += " "
     
     print("Encrypted message is:", cypherletters)
-    #reset cypherletters
-    cypherletters = ""
