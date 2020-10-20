@@ -1,12 +1,9 @@
-# Guess the Number is a simple guessing game.  
-# The computer “thinks” of a number, and the player has ten attempts to guess it.  
-# If the player guesses the number, s/he wins.  
-# Otherwise, the computer tells the player if the guess was too high or too low, 
-# and s/he can guess again.
+# Exercise 1: Guess the Number by A00196141 
 
 from random import randint
 
-random_number =randint(1,10)
+random_number =randint(1,100)
+print("I'm thinking of a number between 1 and 100. Try to guess it.")
 
 while(True):
     for i in range(10):
@@ -23,4 +20,5 @@ while(True):
     play_again = input("Play again (y/n)? ")
     
     if play_again == "n":
+        print("Game Over")
         break
