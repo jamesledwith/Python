@@ -1,0 +1,2 @@
+The maximum tenure is: 72
+The minimum tenure is: 0
