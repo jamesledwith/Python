@@ -2,8 +2,8 @@
 
 from string import ascii_lowercase
 #create an empty string for the choice and cypherletters
-choice = " "
-cypherletters = " "
+choice = ""
+cypherletters = ""
 
 while choice != "q": 
     choice = input("Enter a message to encipher or q to quit: ")
@@ -16,8 +16,9 @@ while choice != "q":
             #reverse the letter
             letter_index = ascii_lowercase.index(letter)
             reversed_letter_index = 25 - letter_index
-            #cypherletters = 
-            print(reversed_letter_index)
+            cypherletters += ascii_lowercase.index(reversed_letter_index)
+             
+            print(cypherletters)
             
             
             
