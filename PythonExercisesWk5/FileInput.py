@@ -4,6 +4,7 @@ Created on Tue Oct 27 13:49:37 2020
 
 @author: James
 """
+import math
 
 # create empty lists 
 gender_list = []
@@ -36,30 +37,50 @@ with open ("Customer_Churn.csv") as file_in:
         churns_list.append(churn)
         
     
-    #maximum tenure 
     tenure_max = max(tenure_list)
-    #minimum tenure 
     tenure_min = min(tenure_list)
-    #get averages for the numeric values (average is total/number of values)
-    tenure_avg = sum(tenure_list) / len(tenure_list)
-    #mode of tenure
-    
+    tenure_mean = sum(tenure_list) / len(tenure_list)
+
     #median of tenure
     tenure_list.sort()
-    mid_index = int(len(tenure_list)/2)
-    
+    mid_index = int(len(tenure_list)/2)   
     if len(tenure_list) % 2 == 1:
         median = tenure_list[mid_index]
     else:
         median = tenure_list(tenure_list[mid_index -1 ] + tenure_list[mid_index + 1])/2
-        
-        
+
+    #mode of tenure    
+    cnt = []
+    for num in tenure_list:
+        cnt.append(tenure_list.count(num))
+    unique_count = []  
+    for num in cnt:
+        if num not in unique_count:
+            unique_count.append(num)  
+    if len(unique_count) > 1:
+        m = []
+        for num in list(range(len(cnt))):
+            if cnt[num] == max(unique_count):
+                m.append(tenure_list[num])
+        mode = []
+        for num in m:
+            if num not in mode:
+                mode.append(num)
+    #https://stackoverflow.com/questions/10797819/finding-the-mode-of-a-list
+
+    #calculate variance
+    var = sum(pow(num - tenure_mean, 2) for num in tenure_list) / len(tenure_list)
+    #standard deviation of tenure
+    standard_deviation = math.sqrt(var)
+    #https://stackoverflow.com/questions/24023927/computing-standard-deviation-without-packages-in-python
     
-    print(f"The average tenure is {tenure_avg}")
-    print(f"The minimum tenure is {tenure_min}")
-    print(f"The maximum tenure is {tenure_max}")
-    print(f"The median of tenure is {median}")
-    
+    print(f"The average tenure is {tenure_mean:0.2f} months")
+    print(f"The minimum tenure is {tenure_min} months")
+    print(f"The maximum tenure is {tenure_max} months")
+    print(f"The median of tenure is {median} months")
+    print(f"The mode of tenure is {mode}")
+    print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
+    #print(sorted(tenure_list))
     #remove the blank spaces '\n'
     line = line.strip()
     #prints all the words in the documet
