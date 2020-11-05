@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 """
+Created on Thu Nov  5 22:08:08 2020
+
+@author: James
+"""
+# -*- coding: utf-8 -*-
+"""
 Created on Tue Oct 27 13:49:37 2020
 
 @author: James
 """
 import math
+from calculations_functions import calc_mean
 
 # create empty lists 
 gender_list = []
@@ -73,33 +80,35 @@ try:
         var = sum(pow(num - tenure_mean, 2) for num in tenure_list) / len(tenure_list)
         #standard deviation of tenure
         standard_deviation = math.sqrt(var)
-         
+        
         print(f"The mean tenure is {tenure_mean:0.2f} months")
+        print(calc_mean(tenure_list))
         print(f"The minimum tenure is {tenure_min} months")
         print(f"The maximum tenure is {tenure_max} months")
         print(f"The median of tenure is {median} months")
         print(f"The mode of tenure is {mode}")
         print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
         
-        # while True:
-        #     #Menu with choices
-        #     choice = int(input("Calculate the following: \n 1:Max \n 2:Min \n 3:Mean \n 4:Median \n 5:Mode \n 6:Standard Deviation \n 7:Quit \n"))
-        #     if choice == 7:
-        #         break
-        #     elif choice ==1:
-        #         print(f"The maximum tenure is {tenure_max} months")
-        #     elif choice ==2:
-        #         print(f"The minimum tenure is {tenure_min} months")
-        #     elif choice ==3:
-        #         print(f"The mean tenure is {tenure_mean:0.2f} months")
-        #     elif choice ==4:
-        #         print(f"The median of tenure is {median} months")
-        #     elif choice ==5:
-        #         print(f"The mode of tenure is {mode}")
-        #     elif choice ==6:
-        #         print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
-        #     else:
-        #         print("Please enter a correct value")
+        while True:
+            #Menu with choices
+            choice = int(input("Calculate the following: \n 1:Max \n 2:Min \n 3:Mean \n 4:Median \n 5:Mode \n 6:Standard Deviation \n 7:Quit \n"))
+            if choice == 7:
+                break
+            elif choice ==1:
+                print(f"The maximum tenure is {tenure_max} months")
+            elif choice ==2:
+                print(f"The minimum tenure is {tenure_min} months")
+            elif choice ==3:
+                print(f"The mean tenure is {tenure_mean:0.2f} months")
+                calc_mean(tenure_list)
+            elif choice ==4:
+                print(f"The median of tenure is {median} months")
+            elif choice ==5:
+                print(f"The mode of tenure is {mode}")
+            elif choice ==6:
+                print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
+            else:
+                print("Please enter a correct value")
       
         # outputed the results to an external file
         with open("FileOutput.txt", "w") as output:
