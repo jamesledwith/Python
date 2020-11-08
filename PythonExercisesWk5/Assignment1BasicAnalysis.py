@@ -20,7 +20,6 @@ try:
     #open the file
     with open ("Customer_Churn.csv") as file_in:
         header_values = file_in.readline()
-        # for every word in 
         for line in file_in:
             #split each line up and into variables seperated by a comma
             gender,tenure,phone_service,internet_service,contract,monthly_costs,total_charges,churn = line.split(",")
@@ -38,7 +37,8 @@ try:
             monthly_costs_list.append(monthly_costs)
             total_charges_list.append(total_charges)
             churns_list.append(churn)
-      
+            
+        # min, max and sum
         tenure_max = max(tenure_list)
         tenure_min = min(tenure_list)
         tenure_mean = sum(tenure_list) / len(tenure_list)
@@ -51,35 +51,40 @@ try:
         else:
             median = tenure_list(tenure_list[mid_index -1 ] + tenure_list[mid_index + 1])/2
     
-        #mode of tenure    
-        cnt = []
+        #mode of tenure   
+        count = []       
         for num in tenure_list:
-            cnt.append(tenure_list.count(num))
+            count.append(tenure_list.count(num))
         unique_count = []  
-        for num in cnt:
+        for num in count:
             if num not in unique_count:
                 unique_count.append(num)  
         if len(unique_count) > 1:
             m = []
-            for num in list(range(len(cnt))):
-                if cnt[num] == max(unique_count):
+            for num in list(range(len(count))):
+                if count[num] == max(unique_count):
                     m.append(tenure_list[num])
             mode = []
             for num in m:
                 if num not in mode:
                     mode.append(num)
         
+        mode = str(mode)
         #calculate variance for standard devition
         var = sum(pow(num - tenure_mean, 2) for num in tenure_list) / len(tenure_list)
         #standard deviation of tenure
         standard_deviation = math.sqrt(var)
          
+        #calculate skew
+        skewness = 3 * (tenure_mean - median) / standard_deviation
+        
         print(f"The mean tenure is {tenure_mean:0.2f} months")
         print(f"The minimum tenure is {tenure_min} months")
         print(f"The maximum tenure is {tenure_max} months")
         print(f"The median of tenure is {median} months")
         print(f"The mode of tenure is {mode}")
         print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
+        print(f"The skew is {skewness:0.03}")
         
         # while True:
         #     #Menu with choices
@@ -109,6 +114,7 @@ try:
             output.write("The median tenure is: " + str(median) + "\n")
             output.write("The mode tenure is: " + str(mode) + "\n")
             output.write("The standard deviation is: " + str(standard_deviation) + "\n")
+            output.write("The skew is: " + str(skewness) + "\n")
 
 except FileNotFoundError:
     print("Error Customer_Churn.csv does not exist")  

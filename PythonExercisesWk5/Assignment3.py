@@ -11,7 +11,7 @@ Created on Tue Oct 27 13:49:37 2020
 @author: James
 """
 import math
-from calculations_functions import calc_mean
+from calculations_functions import calc_mean, calc_sdv
 
 # create empty lists 
 gender_list = []
@@ -49,6 +49,7 @@ try:
         tenure_max = max(tenure_list)
         tenure_min = min(tenure_list)
         tenure_mean = sum(tenure_list) / len(tenure_list)
+        mean = calc_mean(tenure_list)
     
         #median of tenure
         tenure_list.sort()
@@ -82,12 +83,13 @@ try:
         standard_deviation = math.sqrt(var)
         
         print(f"The mean tenure is {tenure_mean:0.2f} months")
-        print(calc_mean(tenure_list))
+        print(mean)
         print(f"The minimum tenure is {tenure_min} months")
         print(f"The maximum tenure is {tenure_max} months")
         print(f"The median of tenure is {median} months")
         print(f"The mode of tenure is {mode}")
         print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
+        print(calc_sdv(tenure_list, mean))
         
         while True:
             #Menu with choices
