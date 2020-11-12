@@ -68,15 +68,21 @@ try:
             for num in m:
                 if num not in mode:
                     mode.append(num)
+            mode = num      
+        else:
+            print("There is no mode")
         
-        mode = str(mode)
+        
         #calculate variance for standard devition
         var = sum(pow(num - tenure_mean, 2) for num in tenure_list) / len(tenure_list)
         #standard deviation of tenure
         standard_deviation = math.sqrt(var)
          
-        #calculate skew
-        skewness = 3 * (tenure_mean - median) / standard_deviation
+        #calculate (median skewness)
+        median_skewness = 3 * (tenure_mean - median) / standard_deviation
+        
+        #calculate (mode skewness)
+        mode_skewness = (tenure_mean - mode) / standard_deviation
         
         print(f"The mean tenure is {tenure_mean:0.2f} months")
         print(f"The minimum tenure is {tenure_min} months")
@@ -84,27 +90,30 @@ try:
         print(f"The median of tenure is {median} months")
         print(f"The mode of tenure is {mode}")
         print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
-        print(f"The skew is {skewness:0.03}")
+        print(f"The median skewness is {median_skewness:0.03}")
+        print(f"The mode skewness is {mode_skewness:0.03}")
         
-        # while True:
-        #     #Menu with choices
-        #     choice = int(input("Calculate the following: \n 1:Max \n 2:Min \n 3:Mean \n 4:Median \n 5:Mode \n 6:Standard Deviation \n 7:Quit \n"))
-        #     if choice == 7:
-        #         break
-        #     elif choice ==1:
-        #         print(f"The maximum tenure is {tenure_max} months")
-        #     elif choice ==2:
-        #         print(f"The minimum tenure is {tenure_min} months")
-        #     elif choice ==3:
-        #         print(f"The mean tenure is {tenure_mean:0.2f} months")
-        #     elif choice ==4:
-        #         print(f"The median of tenure is {median} months")
-        #     elif choice ==5:
-        #         print(f"The mode of tenure is {mode}")
-        #     elif choice ==6:
-        #         print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
-        #     else:
-        #         print("Please enter a correct value")
+        while True:
+            #Menu with choices
+            choice = int(input("Calculate the following: \n 1:Max \n 2:Min \n 3:Mean \n 4:Median \n 5:Mode \n 6:Standard Deviation \n 7:Skew \n 8:Quit \n"))
+            if choice == 8:
+                break
+            elif choice == 1:
+                print(f"The maximum tenure is {tenure_max} months")
+            elif choice == 2:
+                print(f"The minimum tenure is {tenure_min} months")
+            elif choice == 3:
+                print(f"The mean tenure is {tenure_mean:0.2f} months")
+            elif choice == 4:
+                print(f"The median of tenure is {median} months")
+            elif choice == 5:
+                print(f"The mode of tenure is {mode}")
+            elif choice == 6:
+                print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
+            elif choice == 7:
+                print(f"The median skew of tenure is {median_skewness:0.2f}")             
+            else:
+                print("Please enter a correct value")
       
         # outputed the results to an external file
         with open("FileOutput.txt", "w") as output:
@@ -114,7 +123,7 @@ try:
             output.write("The median tenure is: " + str(median) + "\n")
             output.write("The mode tenure is: " + str(mode) + "\n")
             output.write("The standard deviation is: " + str(standard_deviation) + "\n")
-            output.write("The skew is: " + str(skewness) + "\n")
+            output.write("The skew is: " + str(median_skewness) + "\n")
 
 except FileNotFoundError:
     print("Error Customer_Churn.csv does not exist")  

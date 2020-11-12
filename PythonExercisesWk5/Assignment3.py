@@ -89,7 +89,7 @@ try:
         print(f"The median of tenure is {median} months")
         print(f"The mode of tenure is {mode}")
         print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
-        print(calc_sdv(tenure_list, mean))
+        print(f"{calc_sdv(tenure_list, mean):.01f}")
         
         while True:
             #Menu with choices
