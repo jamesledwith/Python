@@ -52,30 +52,21 @@ try:
             median = tenure_list(tenure_list[mid_index -1 ] + tenure_list[mid_index + 1])/2
     
         #mode of tenure   
-        count = []       
+        cnt = [] 
+        #count the frequency of each number in the list
         for num in tenure_list:
-            count.append(tenure_list.count(num))
+            cnt.append(tenure_list.count(num))
+        #make a distinct list of values
         unique_count = []  
-        for num in count:
+        for num in cnt:
             if num not in unique_count:
                 unique_count.append(num)  
-        if len(unique_count) > 1:
-            m = []
-            for num in list(range(len(count))):
-                if count[num] == max(unique_count):
-                    m.append(tenure_list[num])
-            mode = []
-            for num in m:
-                if num not in mode:
-                    mode.append(num)
-            mode = num      
-        else:
-            print("There is no mode")
-        
-        
-        #calculate variance for standard devition
-        var = sum(pow(num - tenure_mean, 2) for num in tenure_list) / len(tenure_list)
+        #find the highest frequency number in the list
+        mode = unique_count.index(max(unique_count))
+   
         #standard deviation of tenure
+        #calculate variance for standard deviation
+        var = sum(pow(num - tenure_mean, 2) for num in tenure_list) / len(tenure_list)
         standard_deviation = math.sqrt(var)
          
         #calculate (median skewness)
@@ -83,20 +74,11 @@ try:
         
         #calculate (mode skewness)
         mode_skewness = (tenure_mean - mode) / standard_deviation
-        
-        print(f"The mean tenure is {tenure_mean:0.2f} months")
-        print(f"The minimum tenure is {tenure_min} months")
-        print(f"The maximum tenure is {tenure_max} months")
-        print(f"The median of tenure is {median} months")
-        print(f"The mode of tenure is {mode}")
-        print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
-        print(f"The median skewness is {median_skewness:0.03}")
-        print(f"The mode skewness is {mode_skewness:0.03}")
-        
+         
         while True:
             #Menu with choices
-            choice = int(input("Calculate the following: \n 1:Max \n 2:Min \n 3:Mean \n 4:Median \n 5:Mode \n 6:Standard Deviation \n 7:Skew \n 8:Quit \n"))
-            if choice == 8:
+            choice = int(input("Calculate the following: \n 1:Max \n 2:Min \n 3:Mean \n 4:Median \n 5:Mode \n 6:Standard Deviation \n 7:Median Skew \n 8:Mode Skew \n 9:Quit \n"))
+            if choice == 9:
                 break
             elif choice == 1:
                 print(f"The maximum tenure is {tenure_max} months")
@@ -111,21 +93,25 @@ try:
             elif choice == 6:
                 print(f"The standard deviation of tenure is {standard_deviation:0.2f}")
             elif choice == 7:
-                print(f"The median skew of tenure is {median_skewness:0.2f}")             
+                print(f"The median skew of tenure is {median_skewness:0.2f}") 
+            elif choice == 8:
+                print(f"The mode skew of tenure is {mode_skewness:0.2f}")
             else:
                 print("Please enter a correct value")
       
-        # outputed the results to an external file
-        with open("FileOutput.txt", "w") as output:
-            output.write("The maximum tenure is: " + str(tenure_max) + "\n")
-            output.write("The minimum tenure is: " + str(tenure_min) + "\n")
-            output.write(f"The mean tenure is:  + {tenure_mean:0.2f} + \n")
-            output.write("The median tenure is: " + str(median) + "\n")
-            output.write("The mode tenure is: " + str(mode) + "\n")
-            output.write("The standard deviation is: " + str(standard_deviation) + "\n")
-            output.write("The skew is: " + str(median_skewness) + "\n")
-
 except FileNotFoundError:
     print("Error Customer_Churn.csv does not exist")  
-    print("Error FileOutput.txt does not exist")
     
+# outputed the results to an external file
+try:
+    with open("FileOutput.txt", "w") as output:
+        output.write("The maximum tenure is: " + str(tenure_max) + "\n")
+        output.write("The minimum tenure is: " + str(tenure_min) + "\n")
+        output.write(f"The mean tenure is: {tenure_mean:0.2f} \n")
+        output.write("The median tenure is: " + str(median) + "\n")
+        output.write("The mode tenure is: " + str(mode) + "\n")
+        output.write("The standard deviation is: " + str(standard_deviation) + "\n")
+        output.write("The median skew is: " + str(median_skewness) + "\n")
+        output.write("The mode skew is: " + str(mode_skewness) + "\n")
+except FileNotFoundError:
+    print("Error FileOutput.txt does not exist")

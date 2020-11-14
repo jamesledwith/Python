@@ -1,8 +1,7 @@
 The maximum tenure is: 72
 The minimum tenure is: 0
-The mean tenure is: 32.37 
+The mean tenure is:  + 32.37 + 
 The median tenure is: 29
 The mode tenure is: 1
 The standard deviation is: 24.557737422863372
-The median skew is: 0.4118231985537484
-The mode skew is: 1.2774445836787691
+The skew is: 0.4118231985537484
