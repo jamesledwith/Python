@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Oct 27 13:49:37 2020
+Created on Tue Nov 17 22:01:26 2020
 
 @author: James
 """
+import matplotlib.pyplot as plt
 import math
 
 # create empty lists 
@@ -37,9 +38,48 @@ try:
             monthly_costs_list.append(monthly_costs)
             total_charges_list.append(total_charges)
             churns_list.append(churn)
+       
         
+       
         
-            
+       
+        
+        tenure_list.sort()
+        # create the figure and axes
+        fig, ax = plt.subplots()
+        
+        # set the title
+        ax.set_title("Tenure list")
+        
+        # set the axis labels
+        ax.set_xlabel("Number of people")
+        ax.set_ylabel("Number of months")
+        
+        #ax.pie()
+        #plot the values
+        ax.plot(tenure_list)
+        
+        #show the plot
+        plt.show()
+        
+        #save the plot and eleminate as much whitespace as possible
+        fig.savefig("firstPlot.png", bbox_inches="tight")
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
+     
+        
         # min, max and sum
         tenure_max = max(tenure_list)
         tenure_min = min(tenure_list)

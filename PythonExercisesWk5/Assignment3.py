@@ -11,6 +11,7 @@ Created on Tue Oct 27 13:49:37 2020
 @author: James
 """
 import math
+import matplotlib.pyplot as plt
 from calculations_functions import calc_mean, calc_sdv
 
 # create empty lists 
@@ -46,6 +47,8 @@ try:
             total_charges_list.append(total_charges)
             churns_list.append(churn)
       
+        fig, ax = plt.subplots()
+        
         tenure_max = max(tenure_list)
         tenure_min = min(tenure_list)
         tenure_mean = sum(tenure_list) / len(tenure_list)
