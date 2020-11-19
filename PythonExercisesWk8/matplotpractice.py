@@ -7,8 +7,13 @@ Created on Tue Nov 17 22:01:26 2020
 import matplotlib.pyplot as plt
 import math
 
+# create an empty dictionary
+data_by_gender = {}
+
 # create empty lists 
 gender_list = []
+gender_list_male = []
+gender_list_female = []
 tenure_list = []
 phone_services_list = []
 internet_service_list = []
@@ -28,6 +33,7 @@ try:
             line = line.strip()
             
             tenure = int(tenure)
+            gender = str(gender)
             
             # add the values in the dataset to their respective lists
             gender_list.append(gender)
@@ -38,32 +44,96 @@ try:
             monthly_costs_list.append(monthly_costs)
             total_charges_list.append(total_charges)
             churns_list.append(churn)
+            for word in gender_list:
+                if gender == "male":
+                    gender_list_male.append(word)
+                else:
+                    gender_list_female.append(word)
+                    
+            # create a figure and an axis object
+            fig, ax = plt.subplots()
+            
+            # set the labels on the axes
+            ax.set_xlabel("Male")
+            ax.set_ylabel("Female")
+            
+            # set the title
+            ax.set_title("Top 500 Supercomputers")
+            
+            # do a scatter plot
+            ax.scatter(, y_rmax, marker=".")
+            ax.scatter(x_cores, y_rpeak, marker=".")
+            ax.legend(["Rmax", "Rpeak"])
+            plt.show()
+            
+            # save the image
+            fig.savefig('scatterplot_supercomputers2.png', bbox_inches='tight')
+
+
+# =============================================================================
+#             # if this is the first occurence of this state
+#             if gender == "Female":
+#                 data_by_gender[gender] += gender
+#             else:
+#                 data_by_gender[gender] += gender
+#                 
+# =============================================================================
+# =============================================================================
+#             
+#             if not gender in data_by_gender:
+#                 data_by_gender[gender] = gender
+#             # otherwise add to the existing value
+#             else:
+#                 data_by_gender[gender] += gender
+#             
+#             dictionary_length = len(data_by_gender)
+#             print(dictionary_length)
+# =============================================================================
+# =============================================================================
+#             
+#             # create a figure and an axis object
+#             fig, ax = plt.subplots()
+#             
+#             # set the title
+#             ax.set_title("Gender Piechart")
+#             
+#             # do a pie chart
+#             ax.pie(data_by_gender.values(), labels = data_by_gender.keys(),autopct="%.0f%%")
+#             plt.show()
+#             
+#             # save the file
+#             fig.savefig('gender_pie_chart.png', bbox_inches='tight')
+# =============================================================================
+            
+            
+            
+            
        
         
        
         
-       
-        
-        tenure_list.sort()
-        # create the figure and axes
-        fig, ax = plt.subplots()
-        
-        # set the title
-        ax.set_title("Tenure list")
-        
-        # set the axis labels
-        ax.set_xlabel("Number of people")
-        ax.set_ylabel("Number of months")
-        
-        #ax.pie()
-        #plot the values
-        ax.plot(tenure_list)
-        
-        #show the plot
-        plt.show()
-        
-        #save the plot and eleminate as much whitespace as possible
-        fig.savefig("firstPlot.png", bbox_inches="tight")
+# =============================================================================
+#         tenure_list.sort()
+#         # create the figure and axes
+#         fig, ax = plt.subplots()
+#         
+#         # set the title
+#         ax.set_title("Tenure list")
+#         
+#         # set the axis labels
+#         ax.set_xlabel("Number of people")
+#         ax.set_ylabel("Number of months")
+#         
+#         #ax.pie()
+#         #plot the values
+#         ax.plot(tenure_list)
+#         
+#         #show the plot
+#         plt.show()
+#         
+#         #save the plot and eleminate as much whitespace as possible
+#         fig.savefig("firstPlot.png", bbox_inches="tight")
+# =============================================================================
      
         
      
