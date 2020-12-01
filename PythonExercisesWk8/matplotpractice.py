@@ -50,26 +50,28 @@ try:
                 else:
                     gender_list_female.append(word)
                     
-            # create a figure and an axis object
-            fig, ax = plt.subplots()
-            
-            # set the labels on the axes
-            ax.set_xlabel("Male")
-            ax.set_ylabel("Female")
-            
-            # set the title
-            ax.set_title("Top 500 Supercomputers")
-            
-            # do a scatter plot
-            ax.scatter(, y_rmax, marker=".")
-            ax.scatter(x_cores, y_rpeak, marker=".")
-            ax.legend(["Rmax", "Rpeak"])
-            plt.show()
-            
-            # save the image
-            fig.savefig('scatterplot_supercomputers2.png', bbox_inches='tight')
-
-
+# =============================================================================
+#             # create a figure and an axis object
+#             fig, ax = plt.subplots()
+#             
+#             # set the labels on the axes
+#             ax.set_xlabel("Male")
+#             ax.set_ylabel("Female")
+#             
+#             # set the title
+#             ax.set_title("Top 500 Supercomputers")
+#             
+#             # do a scatter plot
+#             ax.scatter(, y_rmax, marker=".")
+#             ax.scatter(x_cores, y_rpeak, marker=".")
+#             ax.legend(["Rmax", "Rpeak"])
+#             plt.show()
+#             
+#             # save the image
+#             fig.savefig('scatterplot_supercomputers2.png', bbox_inches='tight')
+# 
+# 
+# =============================================================================
 # =============================================================================
 #             # if this is the first occurence of this state
 #             if gender == "Female":
@@ -106,12 +108,6 @@ try:
 # =============================================================================
             
             
-            
-            
-       
-        
-       
-        
 # =============================================================================
 #         tenure_list.sort()
 #         # create the figure and axes
