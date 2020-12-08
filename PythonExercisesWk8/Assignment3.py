@@ -6,6 +6,9 @@ Created on Tue Oct 27 13:49:37 2020
 """
 import math
 
+# Import the functions 
+from calculations_functions import calc_mean, calc_sdv
+
 # create empty lists 
 gender_list = []
 tenure_list = []
@@ -43,8 +46,12 @@ try:
         # min, max and sum
         tenure_max = max(tenure_list)
         tenure_min = min(tenure_list)
+        
+        
         tenure_mean = sum(tenure_list) / len(tenure_list)
-    
+        if __name__ == "__main__":
+            print("THE MEAN IS ",calc_mean(tenure_list))
+
         #median of tenure
         tenure_list.sort()
         mid_index = int(len(tenure_list)/2)   
@@ -65,7 +72,7 @@ try:
                 unique_count.append(num)  
         #find the highest frequency number in the list
         mode = unique_count.index(max(unique_count))
-   
+        
         #standard deviation of tenure
         #calculate variance for standard deviation
         var = sum(pow(num - tenure_mean, 2) for num in tenure_list) / len(tenure_list)
