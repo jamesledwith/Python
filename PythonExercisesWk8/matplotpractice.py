@@ -32,51 +32,74 @@ with open ("Customer_Churn.csv") as file_in:
         #remove the blank spaces '\n'  
         line = line.strip()
         
-        tenure = int(tenure)
-        gender = str(gender)
+       
+        #if this is the first year
+        if not 
+            
         
-        # add the values in the dataset to their respective lists
-        gender_list.append(gender)
-        tenure_list.append(tenure)
-        phone_services_list.append(phone_service)
-        internet_service_list.append(internet_service)
-        contract_list.append(contract)
-        monthly_costs_list.append(monthly_costs)
-        total_charges_list.append(total_charges)
-        churns_list.append(churn)
+# =============================================================================
+#         tenure = int(tenure)
+#         gender = str(gender)
+#         
+#         # add the values in the dataset to their respective lists
+#         gender_list.append(gender)
+#         tenure_list.append(tenure)
+#         phone_services_list.append(phone_service)
+#         internet_service_list.append(internet_service)
+#         contract_list.append(contract)
+#         monthly_costs_list.append(monthly_costs)
+#         total_charges_list.append(total_charges)
+#         churns_list.append(churn)
+# =============================================================================
+        
+# =============================================================================
+#         count =0
+#          #if this is the first gender
+#         if not gender in data_by_gender:
+#             data_by_gender[gender] = int
+#             
+#                #
+#                (contract)
+#         else:
+#             data_by_gender[gender] += int(contract)
+# =============================================================================
+        
+    
         for word in gender_list:
-            if gender == "male":
+            if word == "male":
                 gender_list_male.append(word)
             else:
                 gender_list_female.append(word)
-                
-      
-                             
-        # Create the figure and axes
-        fig, ax = plt.subplots()
-        
-        # Set the title
-        ax.set_title("Male and Female")
-        
-        # set the axis labels
-        ax.set_xlabel("Gender")
-        ax.set_ylabel("Total Amount")
+            
     
-        # set the ticks on the x-axis
-        ax.set_xticks(range(0,101,10))
+                         
+    # Create the figure and axes
+    fig, ax = plt.subplots()
     
-        # create a list for the grade boundaries
-        grades = [0,40,50,60,70,100]       
-        
-        # draw a histogram
-        ax.hist(gender_list_female, ec="black")    
-        
-        # show the plot
-        plt.show()
-        
-        # Save the figure (bbox = "tight" eliminates whitespace padding)
-        fig.savefig("marks_histogram.png", bbox_inches="tight")
+    # Set the title
+    ax.set_title("Male and Female Breakdown")
+    
+    #do a pie chart
+    ax.pie(data_by_gender.values(), labels = data_by_gender.keys())
+    
+    # show the plot
+    plt.show()
+    
+    # Save the figure (bbox = "tight" eliminates whitespace padding)
+    fig.savefig("gender_piechart.png")
 
+# set the axis labels
+#         ax.set_xlabel("Gender")
+#         ax.set_ylabel("Total Amount")
+#     
+#         # set the ticks on the x-axis
+#         ax.set_xticks(range(0,101,10))
+#     
+#         # create a list for the grade boundaries
+#         grades = [0,40,50,60,70,100]       
+#         
+#         # draw a histogram
+#         ax.hist(gender_list_female, ec="black")    
 
 # =============================================================================
 #             # if this is the first occurence of this state

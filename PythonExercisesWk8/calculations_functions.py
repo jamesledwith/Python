@@ -118,23 +118,23 @@ def calc_max(list_values):
 
 #calculate the median
 def calc_median(list_values):
-    list_values.sort()
-    if len(list_values) % 2 ==1:
-        return list_values[len//2]
+# =============================================================================
+#     list_values.sort()
+#     if len(list_values) % 2 ==1:
+#         return list_values[len//2]
+#     else:
+#         return (list_values[len(list_values)//2-1] + list_values[len(list_values)//2])/2
+# =============================================================================
+    #median of tenure
+    sorted_list = list_values.sort()
+    mid_index = int(len(sorted_list)/2)   
+    if len(sorted_list) % 2 == 1:
+        median_even = sorted_list[mid_index]
+        return median_even
     else:
-        return (list_values[len(list_values)//2-1] + list_values[len(list_values)//2])/2
-# =============================================================================
-#     #median of tenure
-#         list_values.sort()
-#         mid_index = int(len(list_values)/2)   
-#         if len(list_values) % 2 == 1:
-#             median_even = list_values[mid_index]
-#             return median_even
-#         else:
-#             median_odd = (list_values(list_values[mid_index -1 ] + list_values[mid_index + 1])/2)
-#             return median_odd
-# =============================================================================
-            
+        median_odd = (sorted_list(sorted_list[mid_index -1 ] + sorted_list[mid_index + 1])/2)
+        return median_odd
+
 #calculate the median skewness
 def calc_median_skewness(list_values):
     mean = calc_mean(list_values)
@@ -151,12 +151,14 @@ def calc_mode_skewness(list_values):
     return mode_skewness
 
 
-if __name__ == "__main__":
-    test_list = [1,1,1,1,6,5]
-    print("mean ",calc_mean(test_list))
-    print("mode ", calc_mode(test_list))
-    print("median skew ", calc_median_skewness(test_list))
-    print("min ", calc_min(test_list))
-    print("max ", calc_max(test_list))
-    print("median ", calc_median(test_list))
-    print("standard deviation", calc_sdv(test_list))
+# =============================================================================
+# if __name__ == "__main__":
+#     test_list = [1,1,1,1,6,5]
+#     print("mean ",calc_mean(test_list))
+#     print("mode ", calc_mode(test_list))
+#     print("median skew ", calc_median_skewness(test_list))
+#     print("min ", calc_min(test_list))
+#     print("max ", calc_max(test_list))
+#     print("median ", calc_median(test_list))
+#     print("standard deviation", calc_sdv(test_list))
+# =============================================================================
