@@ -75,8 +75,10 @@ def calc_mode(list_values):
     # add highest frequencys to list
     for num, freq in frequency.items():
         if freq == max_frequency:
+            mode = max_frequency
             max_frequency_list.append(num)
-    return max_frequency_list
+            mode = num
+    return mode
 
 #calculate the minimum
 def calc_min(list_values):
@@ -123,33 +125,41 @@ def calc_median(list_values):
 
     Parameters
     ----------
-    list_values : TYPE
-        DESCRIPTION.
+    list_values : list
+        The list of values.
 
     Returns
     -------
-    None.
+    median : float
+        The median value in a list.
 
     """
-# =============================================================================
-#     list_values.sort()
-#     if len(list_values) % 2 ==1:
-#         return list_values[len//2]
-#     else:
-#         return (list_values[len(list_values)//2-1] + list_values[len(list_values)//2])/2
-# =============================================================================
+
     #median of tenure
-    sorted_list = list_values.sort()
-    mid_index = int(len(sorted_list)/2)   
-    if len(sorted_list) % 2 == 1:
-        median_even = sorted_list[mid_index]
-        return median_even
+    list_values.sort()
+    mid_index = int(len(list_values)/2)   
+    if len(list_values) % 2 == 1:
+        median = list_values[mid_index]
+        return median
     else:
-        median_odd = (sorted_list(sorted_list[mid_index -1 ] + sorted_list[mid_index + 1])/2)
-        return median_odd
+        median = (list_values(list_values[mid_index -1 ] + list_values[mid_index + 1])/2)
+        return median
 
 #calculate the median skewness
 def calc_median_skewness(list_values):
+    """
+    Student:A00196141
+
+    Parameters
+    ----------
+    list_values : list
+        The list of values.
+
+    Returns
+    -------
+    median_skewness : float
+        The median skewness of a list.
+    """
     #calculate mean
     mean = sum(list_values) / len(list_values)
     
@@ -170,18 +180,17 @@ def calc_median_skewness(list_values):
 
 def calc_mode_skewness(list_values):
    """
-    
+    Student:A00196141
 
     Parameters
     ----------
-    list_values : TYPE
-        DESCRIPTION.
+    list_values : list
+        The list of values.
 
     Returns
     -------
-    mode_skewness : TYPE
-        DESCRIPTION.
-
+    mode_skewness : float
+        The mode skewness of a list.
     """
     #calculate mean
    mean = sum(list_values) / len(list_values)
@@ -197,8 +206,9 @@ def calc_mode_skewness(list_values):
     # add highest frequencys to list
    for num, freq in frequency.items():
        if freq == max_frequency:
+           mode = max_frequency
            max_frequency_list.append(num)
-   mode = max_frequency_list
+  # mode = int(max_frequency_list)
    
     #standard_deviation
    var = sum(pow(num - mean, 2) for num in list_values) / len(list_values) #variance
@@ -226,15 +236,66 @@ def convert_list_to_dictionary(list_values):
     for i in range(len(list_values)):
         dictionary_value[list_values[i]] = list_values.count(list_values[i])
     return dictionary_value
-    
-    
-if __name__ == "__main__":
-    test_list = [1,1,1,1,6,5]
-    print("mean ",calc_mean(test_list))
-    print("mode ", calc_mode(test_list))
-    print("median skew ", calc_median_skewness(test_list))
-    print("min ", calc_min(test_list))
-    print("max ", calc_max(test_list))
-    print("median ", calc_median(test_list))
-    print("standard deviation", calc_sdv(test_list))
 
+#calculate churn rate    
+def calc_churn_rate(time_period, data_by_churn):
+    """
+    Student:A00196141
+
+    Parameters
+    ----------
+    time_period : string
+        The time period for analysis.
+    data_by_churn : dict
+        The dictionary with values.
+
+    Returns
+    -------
+    churn_rate : float
+        The churn rate values in a dictionary.
+
+    """
+    # Determine a time period.
+    churn_zero_no = data_by_churn[str(time_period)]
+    # Determine the number of customers acquired in this time period. 
+    customers_kept = churn_zero_no.count("No")   
+    # Determine the number of customers lost or churned in this time period. 
+    customers_lost = churn_zero_no.count("Yes")
+    try:
+        # Divide the number of lost customers by the number of acquired customers.
+        # Multiply that number by 100%.
+        churn_rate = (customers_lost / customers_kept) * 100
+    except ZeroDivisionError as error:
+        print("Handling run time error: ", error) 
+    return churn_rate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# =============================================================================
+# if __name__ == "__main__":
+#     test_list = [1,1,1,1,6,5]
+#     test_list2 = [3,8,19,17,24,27]
+#     print("mean ",calc_mean(test_list))
+#     print("mode ", calc_mode(test_list))
+#     print("median skew ", calc_median_skewness(test_list))
+#     print("min ", calc_min(test_list))
+#     print("max ", calc_max(test_list))
+#     print("median ", calc_median(test_list))
+#     print("standard deviation", calc_sdv(test_list))
+#     print("standard deviation", calc_mode_skewness(test_list))
+# 
+# 
+# 
+# =============================================================================
