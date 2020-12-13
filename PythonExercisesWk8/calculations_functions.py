@@ -9,7 +9,7 @@ from math import sqrt
 #mean calculation
 def calc_mean(values):
     """
-    
+    Student:A00196141
 
     Parameters
     ----------
@@ -28,7 +28,7 @@ def calc_mean(values):
 #calculate standard devition
 def calc_sdv(values):
     """
-    
+    Student:A00196141
 
     Parameters
     ----------
@@ -51,7 +51,7 @@ def calc_sdv(values):
 #calculate the mode
 def calc_mode(list_values):
     """
-    
+    Student:A00196141
 
     Parameters
     ----------
@@ -81,7 +81,7 @@ def calc_mode(list_values):
 #calculate the minimum
 def calc_min(list_values):
     """
-    
+    Student:A00196141
 
     Parameters
     ----------
@@ -100,7 +100,7 @@ def calc_min(list_values):
 #calculate the maximum
 def calc_max(list_values):
     """
-    
+    Student:A00196141
 
     Parameters
     ----------
@@ -118,6 +118,19 @@ def calc_max(list_values):
 
 #calculate the median
 def calc_median(list_values):
+    """
+    Student:A00196141
+
+    Parameters
+    ----------
+    list_values : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    None.
+
+    """
 # =============================================================================
 #     list_values.sort()
 #     if len(list_values) % 2 ==1:
@@ -144,13 +157,47 @@ def calc_median_skewness(list_values):
     return median_skewness
 
 def calc_mode_skewness(list_values):
+    """
+    Student:A00196141
+
+    Parameters
+    ----------
+    list_values : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    mode_skewness : TYPE
+        DESCRIPTION.
+
+    """
     mean = calc_mean(list_values)
     mode = calc_mode(list_values)
     standard_deviation = calc_sdv(list_values)
     mode_skewness = (mean - mode) / standard_deviation
     return mode_skewness
 
+def convert_list_to_dictionary(list_values):
+    """
+    Student:A00196141
 
+    Parameters
+    ----------
+    list_values : list
+        The list of values.
+
+    Returns
+    -------
+    dictionary_value : dictionary
+        The dictionary with values.
+
+    """
+    dictionary_value = {}
+    for i in range(len(list_values)):
+        dictionary_value[list_values[i]] = list_values.count(list_values[i])
+    return dictionary_value
+    
+    
 # =============================================================================
 # if __name__ == "__main__":
 #     test_list = [1,1,1,1,6,5]

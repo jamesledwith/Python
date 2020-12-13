@@ -9,6 +9,9 @@ import math
 
 # create an empty dictionary
 data_by_gender = {}
+data_by_tenure = {}
+data_by_internet_service = {}
+
 
 # create empty lists 
 gender_list = []
@@ -22,7 +25,7 @@ monthly_costs_list = []
 total_charges_list = []
 churns_list = []
 
-
+from calculations_functions import convert_list_to_dictionary
 #open the file
 with open ("Customer_Churn.csv") as file_in:
     header_values = file_in.readline()
@@ -32,26 +35,116 @@ with open ("Customer_Churn.csv") as file_in:
         #remove the blank spaces '\n'  
         line = line.strip()
         
-       
-        #if this is the first year
-        if not 
-            
+        #if this is the first month
+        if not tenure in data_by_tenure:
+            data_by_tenure[tenure] = int(tenure)
+        # or else add it to the value
+        else:
+            data_by_tenure[tenure] += int(tenure)
+        tenure = int(tenure)
+        gender = str(gender)
+        
+        # add the values in the dataset to their respective lists
+        gender_list.append(gender)
+        tenure_list.append(tenure)
+        phone_services_list.append(phone_service)
+        internet_service_list.append(internet_service)
+        contract_list.append(contract)
+        monthly_costs_list.append(monthly_costs)
+        total_charges_list.append(total_charges)
+        churns_list.append(churn)        
+
+# create a figure and an axis object
+fig, ax = plt.subplots()
+
+# set the title
+ax.set_title("tenure % per year")
+
+# set the y positions
+y_pos = [ i for i in range(len(data_by_tenure))]
+
+# set the y tick labels
+ax.set_yticks(y_pos)
+ax.set_yticklabels(data_by_tenure.keys())
+
+# set the labels on the axes
+ax.set_ylabel("Developer")
+ax.set_xlabel("Percentage Share")
+
+# do a horizontal bar chart
+ax.barh(y_pos,sorted(data_by_tenure.values()), align="center")
+plt.show()
+
+# save the bar chart
+fig.savefig("market_share_bar.png")
+
+# =============================================================================
+#             ####WORKING TENURE PIECHART BREAKDOWN BY YEAR
+# # Create the figure and axes
+# fig, ax = plt.subplots()
+# 
+# # Set the title
+# ax.set_title("Tenure Piechart Breakdown by Year")
+# 
+# #do a pie chart
+# ax.pie(data_by_tenure.values(), labels = data_by_tenure.keys(), autopct = "%.0f%%")
+# 
+# # show the plot
+# plt.show()
+#     
+# # Save the figure (bbox = "tight" eliminates whitespace padding)
+# fig.savefig("tenure_piechart.png")
+#     
+# =============================================================================
         
 # =============================================================================
-#         tenure = int(tenure)
-#         gender = str(gender)
+# #######WORKING PIECHART 
+# #add the list to a dictionary
+# for i in range(len(internet_service_list)):
+#     data_by_internet_service[internet_service_list[i]] = internet_service_list.count(internet_service_list[i])
+# 
+# print(convert_list_to_dictionary(churns_list))
+# 
+# # Create the figure and axes
+# fig, ax = plt.subplots()
+# 
+# # Set the title
+# ax.set_title("Piechart Breakdown by Internet Service")
+# 
+# #do a pie chart
+# ax.pie(data_by_internet_service.values(), labels = data_by_internet_service.keys(), autopct = "%.0f%%")
+# 
+# # show the plot
+# plt.show()
+#     
+# # Save the figure (bbox = "tight" eliminates whitespace padding)
+# fig.savefig("internet_service_piechart.png")
+# =============================================================================
+
+   
+    
+
+
+# =============================================================================
+#         count = 0
+#         if not gender in gender_list:
+#             data_by_gender[gender] = str(gender)
+#         else:
+#             data_by_gender[gender] = str(gender)
 #         
-#         # add the values in the dataset to their respective lists
-#         gender_list.append(gender)
-#         tenure_list.append(tenure)
-#         phone_services_list.append(phone_service)
-#         internet_service_list.append(internet_service)
-#         contract_list.append(contract)
-#         monthly_costs_list.append(monthly_costs)
-#         total_charges_list.append(total_charges)
-#         churns_list.append(churn)
+#         
+# for string in gender_list:
+#     if string in data_by_gender:
+#         data_by_gender[string] +=1
+#     else:
+#         data_by_gender[string] = 1
+#         
+# 
 # =============================================================================
-        
+
+
+
+ 
 # =============================================================================
 #         count =0
 #          #if this is the first gender
@@ -65,28 +158,17 @@ with open ("Customer_Churn.csv") as file_in:
 # =============================================================================
         
     
-        for word in gender_list:
-            if word == "male":
-                gender_list_male.append(word)
-            else:
-                gender_list_female.append(word)
-            
+# =============================================================================
+#         for word in gender_list:
+#             if word == "male":
+#                 gender_list_male.append(word)
+#             else:
+#                 gender_list_female.append(word)
+#             
+# =============================================================================
     
                          
-    # Create the figure and axes
-    fig, ax = plt.subplots()
-    
-    # Set the title
-    ax.set_title("Male and Female Breakdown")
-    
-    #do a pie chart
-    ax.pie(data_by_gender.values(), labels = data_by_gender.keys())
-    
-    # show the plot
-    plt.show()
-    
-    # Save the figure (bbox = "tight" eliminates whitespace padding)
-    fig.savefig("gender_piechart.png")
+   
 
 # set the axis labels
 #         ax.set_xlabel("Gender")
@@ -109,33 +191,7 @@ with open ("Customer_Churn.csv") as file_in:
 #                 data_by_gender[gender] += gender
 #                 
 # =============================================================================
-# =============================================================================
-#             
-#             if not gender in data_by_gender:
-#                 data_by_gender[gender] = gender
-#             # otherwise add to the existing value
-#             else:
-#                 data_by_gender[gender] += gender
-#             
-#             dictionary_length = len(data_by_gender)
-#             print(dictionary_length)
-# =============================================================================
-# =============================================================================
-#             
-#             # create a figure and an axis object
-#             fig, ax = plt.subplots()
-#             
-#             # set the title
-#             ax.set_title("Gender Piechart")
-#             
-#             # do a pie chart
-#             ax.pie(data_by_gender.values(), labels = data_by_gender.keys(),autopct="%.0f%%")
-#             plt.show()
-#             
-#             # save the file
-#             fig.savefig('gender_pie_chart.png', bbox_inches='tight')
-# =============================================================================
-            
+      
             
 # =============================================================================
 #         tenure_list.sort()
@@ -160,20 +216,9 @@ with open ("Customer_Churn.csv") as file_in:
 #         fig.savefig("firstPlot.png", bbox_inches="tight")
 # =============================================================================
      
-        
      
         
-     
-        
-     
-        
-     
-        
-     
-        
-     
-        
-     
+
 # =============================================================================
 #         
 #         # min, max and sum

@@ -29,15 +29,15 @@ try:
             #remove the blank spaces '\n'  
             line = line.strip()
             
-            tenure = int(tenure)
-            
+            #tenure = int(tenure)
+            #total_charges =(float(total_charges))
             # add the values in the dataset to their respective lists
             gender_list.append(gender)
-            tenure_list.append(tenure)
+            tenure_list.append(int(tenure))
             phone_services_list.append(phone_service)
             internet_service_list.append(internet_service)
             contract_list.append(contract)
-            monthly_costs_list.append(monthly_costs)
+            monthly_costs_list.append(float(monthly_costs))
             total_charges_list.append(total_charges)
             churns_list.append(churn)
         
@@ -85,6 +85,7 @@ try:
         mode_skewness = (tenure_mean - mode) / standard_deviation
          
         while True:
+            
             #Menu with choices
             choice = int(input("Calculate the following: \n 1:Max \n 2:Min \n 3:Mean \n 4:Median \n 5:Mode \n 6:Standard Deviation \n 7:Median Skew \n 8:Mode Skew \n 9:Quit \n"))
             if choice == 9:
@@ -94,7 +95,18 @@ try:
             elif choice == 2:
                 print(f"The minimum tenure is {tenure_min} months")
             elif choice == 3:
-                print(f"The mean tenure is {tenure_mean:0.2f} months")
+                m_choice = int(input("calculate the mean for the folowing (1)Tenure (2)Monthly Charge (3)Total Charge (4)Main Menu"))
+                if m_choice == 1:    
+                    print(f"The mean tenure is, {calc_mean(tenure_list):0.02f} months")          
+                elif m_choice == 2:    
+                    print(f"The mean tenure is, {calc_mean(monthly_costs_list):0.02f} months")
+                elif m_choice == 3:    
+                    print(calc_mean(total_charges_list))
+                elif m_choice == 4:    
+                    break
+                else:
+                    print("Please enter a correct value")
+                
             elif choice == 4:
                 print(f"The median of tenure is {median} months")
             elif choice == 5:
