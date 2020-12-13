@@ -11,6 +11,7 @@ import math
 data_by_gender = {}
 data_by_tenure = {}
 data_by_internet_service = {}
+data_by_churn  = {}
 
 
 # create empty lists 
@@ -35,12 +36,29 @@ with open ("Customer_Churn.csv") as file_in:
         #remove the blank spaces '\n'  
         line = line.strip()
         
-        #if this is the first month
-        if not tenure in data_by_tenure:
-            data_by_tenure[tenure] = int(tenure)
-        # or else add it to the value
+        
+# =============================================================================
+#     #if this is the first month
+#     if not tenure in data_by_tenure:
+#         data_by_tenure[tenure] = int(tenure)
+#     # or else add it to the value
+#     else:
+#         data_by_tenure[tenure] += int(tenure)
+#     
+#     if not churn in data_by_churn:
+#         data_by_churn[churn] = str(churn)
+#     else:
+#         data_by_churn[churn] += str(churn)
+#     
+# =============================================================================
+    
+        #if this is the first tenure
+        if not tenure in data_by_churn:
+            data_by_churn[tenure] = churn
+        #or else add it to the 
         else:
-            data_by_tenure[tenure] += int(tenure)
+            data_by_churn[tenure] += churn
+
         tenure = int(tenure)
         gender = str(gender)
         
@@ -52,31 +70,57 @@ with open ("Customer_Churn.csv") as file_in:
         contract_list.append(contract)
         monthly_costs_list.append(monthly_costs)
         total_charges_list.append(total_charges)
-        churns_list.append(churn)        
+        churns_list.append(churn)
+#:{ key:value for var in sequence if condition }
 
+#frequencies = {i : data_by_churn.count(i) for i in range(0)}
+#print(frequencies)
+
+
+
+#value_of_zero = data_by_churn['0']
+print(data_by_churn.get(2))
+print(convert_list_to_dictionary(churns_list))
+# =============================================================================
+# print(convert_list_to_dictionary(sorted(tenure_list)))
+# print(convert_list_to_dictionary(churns_list))
+# =============================================================================
+# =============================================================================
+# def calc_churn_rate():
+#     # Determine a time period.
+#     # Determine the number of customers acquired in this time period. 
+#     # Determine the number of customers lost or churned in this time period. 
+#     # Divide the number of lost customers by the number of acquired customers.
+#     # Multiply that number by 100%.
+#     return churn_rate
+# if __name__ == "__main__":
+#     def calc_churn_rate()
+# 
+# =============================================================================
 # create a figure and an axis object
 fig, ax = plt.subplots()
 
 # set the title
-ax.set_title("tenure % per year")
+ax.set_title("Churn Rate Per Month")
 
 # set the y positions
-y_pos = [ i for i in range(len(data_by_tenure))]
+y_pos = [ i for i in range(len(data_by_churn))]
 
 # set the y tick labels
 ax.set_yticks(y_pos)
-ax.set_yticklabels(data_by_tenure.keys())
+ax.set_yticklabels(data_by_churn.keys())
 
 # set the labels on the axes
-ax.set_ylabel("Developer")
-ax.set_xlabel("Percentage Share")
+ax.set_ylabel("Length of Tenure")
+ax.set_xlabel("Amount of Churn")
 
 # do a horizontal bar chart
-ax.barh(y_pos,sorted(data_by_tenure.values()), align="center")
+ax.barh(y_pos,data_by_churn.values(), align="center")
 plt.show()
 
 # save the bar chart
 fig.savefig("market_share_bar.png")
+
 
 # =============================================================================
 #             ####WORKING TENURE PIECHART BREAKDOWN BY YEAR

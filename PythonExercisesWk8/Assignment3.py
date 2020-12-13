@@ -7,7 +7,7 @@ Created on Tue Oct 27 13:49:37 2020
 import math
 
 # Import the functions 
-from calculations_functions import calc_mean, calc_sdv
+from calculations_functions import calc_mean, calc_sdv, calc_min, calc_max, calc_mode, calc_median_skewness, calc_median_skewness
 
 # create empty lists 
 gender_list = []
@@ -30,7 +30,7 @@ try:
             line = line.strip()
             
             #tenure = int(tenure)
-            #total_charges =(float(total_charges))
+            total_charges =(float(total_charges))
             # add the values in the dataset to their respective lists
             gender_list.append(gender)
             tenure_list.append(int(tenure))
@@ -50,7 +50,7 @@ try:
         
         tenure_mean = sum(tenure_list) / len(tenure_list)
         if __name__ == "__main__":
-            print("THE MEAN IS ",calc_mean(tenure_list))
+            print("THE MEAN IS of total charge is",calc_mean(total_charges_list))
 
         #median of tenure
         tenure_list.sort()
@@ -92,21 +92,47 @@ try:
                 break
             elif choice == 1:
                 print(f"The maximum tenure is {tenure_max} months")
+                m_choice = int(input("calculate the maximum for the folowing (1)Tenure (2)Monthly Charge (3)Total Charge (4)Main Menu"))
+                if m_choice == 1:    
+                    print(f"The maximum tenure is, {calc_min(tenure_list):0.02f} months")          
+                elif m_choice == 2:    
+                    print(f"The maximum monthly charge is, {calc_min(monthly_costs_list):0.02f} ")
+                elif m_choice == 3:    
+                    print(f"The maximum total charge is, {calc_min(total_charges_list):0.02f} ")
+                elif m_choice == 4:    
+                    break
+                else:
+                    print("Please enter a correct value")
+            
+            # Calculate minimum menu
             elif choice == 2:
-                print(f"The minimum tenure is {tenure_min} months")
+                m_choice = int(input("calculate the minimum for the folowing (1)Tenure (2)Monthly Charge (3)Total Charge (4)Main Menu"))
+                if m_choice == 1:    
+                    print(f"The minimum tenure is, {calc_min(tenure_list):0.02f} months")          
+                elif m_choice == 2:    
+                    print(f"The minimum monthly charge is, {calc_min(monthly_costs_list):0.02f} ")
+                elif m_choice == 3:    
+                    print(f"The minimum total charge is, {calc_min(total_charges_list):0.02f} ")
+                elif m_choice == 4:    
+                    break
+                else:
+                    print("Please enter a correct value")
+                    
+            # Calculate maximum menu
             elif choice == 3:
                 m_choice = int(input("calculate the mean for the folowing (1)Tenure (2)Monthly Charge (3)Total Charge (4)Main Menu"))
                 if m_choice == 1:    
                     print(f"The mean tenure is, {calc_mean(tenure_list):0.02f} months")          
                 elif m_choice == 2:    
-                    print(f"The mean tenure is, {calc_mean(monthly_costs_list):0.02f} months")
+                    print(f"The mean monthly charge  is, {calc_mean(monthly_costs_list):0.02f} ")
                 elif m_choice == 3:    
-                    print(calc_mean(total_charges_list))
+                    print(f"The minimum total charge is, {calc_mean(total_charges_list):0.02f} ")
                 elif m_choice == 4:    
                     break
                 else:
-                    print("Please enter a correct value")
-                
+                    print("Please enter a correct value")   
+                    
+            #Calculate the median
             elif choice == 4:
                 print(f"The median of tenure is {median} months")
             elif choice == 5:

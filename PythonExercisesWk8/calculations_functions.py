@@ -150,15 +150,27 @@ def calc_median(list_values):
 
 #calculate the median skewness
 def calc_median_skewness(list_values):
-    mean = calc_mean(list_values)
-    median = calc_median(list_values)
-    standard_deviation = calc_sdv(list_values)
+    #calculate mean
+    mean = sum(list_values) / len(list_values)
+    
+    #calculate median
+    sorted_list = list_values.sort()
+    mid_index = int(len(sorted_list)/2)   
+    if len(sorted_list) % 2 == 1:
+        median = sorted_list[mid_index]
+    else:
+        median = (sorted_list(sorted_list[mid_index -1 ] + sorted_list[mid_index + 1])/2)
+   
+    #standard_deviation
+    var = sum(pow(num - mean, 2) for num in list_values) / len(list_values) #variance
+    standard_deviation = sqrt(var)
+    
     median_skewness = 3 * (mean - median) / standard_deviation
     return median_skewness
 
 def calc_mode_skewness(list_values):
-    """
-    Student:A00196141
+   """
+    
 
     Parameters
     ----------
@@ -171,11 +183,29 @@ def calc_mode_skewness(list_values):
         DESCRIPTION.
 
     """
-    mean = calc_mean(list_values)
-    mode = calc_mode(list_values)
-    standard_deviation = calc_sdv(list_values)
-    mode_skewness = (mean - mode) / standard_deviation
-    return mode_skewness
+    #calculate mean
+   mean = sum(list_values) / len(list_values)
+    
+    # calculate mode
+   frequency = {}
+   for num in list_values:
+       frequency.setdefault(num, 0)
+       frequency[num] += 1
+    # the highest occuring numbers 
+   max_frequency = max(frequency.values())
+   max_frequency_list = []
+    # add highest frequencys to list
+   for num, freq in frequency.items():
+       if freq == max_frequency:
+           max_frequency_list.append(num)
+   mode = max_frequency_list
+   
+    #standard_deviation
+   var = sum(pow(num - mean, 2) for num in list_values) / len(list_values) #variance
+   standard_deviation = sqrt(var)
+    
+   mode_skewness = (mean - mode) / standard_deviation
+   return mode_skewness
 
 def convert_list_to_dictionary(list_values):
     """
@@ -198,14 +228,13 @@ def convert_list_to_dictionary(list_values):
     return dictionary_value
     
     
-# =============================================================================
-# if __name__ == "__main__":
-#     test_list = [1,1,1,1,6,5]
-#     print("mean ",calc_mean(test_list))
-#     print("mode ", calc_mode(test_list))
-#     print("median skew ", calc_median_skewness(test_list))
-#     print("min ", calc_min(test_list))
-#     print("max ", calc_max(test_list))
-#     print("median ", calc_median(test_list))
-#     print("standard deviation", calc_sdv(test_list))
-# =============================================================================
+if __name__ == "__main__":
+    test_list = [1,1,1,1,6,5]
+    print("mean ",calc_mean(test_list))
+    print("mode ", calc_mode(test_list))
+    print("median skew ", calc_median_skewness(test_list))
+    print("min ", calc_min(test_list))
+    print("max ", calc_max(test_list))
+    print("median ", calc_median(test_list))
+    print("standard deviation", calc_sdv(test_list))
+
