@@ -337,5 +337,7 @@ try:
         output.write(f"The median skew is: {calc_median_skewness(tenure_list):0.2f}\n")
         output.write(f"The mode skew is: {calc_mode_skewness(tenure_list):0.2f}\n")
         output.write(f"The churn of month 7 is: {calc_mode_skewness(str(7),data_by_churn):0.2f}\n")
+        
+        output.close()
 except FileNotFoundError:
     print("Error FileOutput.txt does not exist")
