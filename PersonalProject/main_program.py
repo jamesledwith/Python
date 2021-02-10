@@ -5,7 +5,6 @@ Created on Tue Oct 27 13:49:37 2020
 @author: James
 """
 import matplotlib.pyplot as plt
-import math
 
 # Import the functions 
 from calculations_functions import calc_mean, calc_sdv, calc_min, calc_max, calc_mode, calc_median_skewness, calc_median_skewness, convert_list_to_dictionary, calc_churn_rate, calc_median, calc_mode_skewness
@@ -74,11 +73,11 @@ try:
                     
                     # Calculate the maximum
                     elif choice == 1:
-                        max_choice = int(input("calculate the maximum for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu "))
+                        max_choice = int(input("calculate the maximum for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu"))
                         if max_choice == 1:    
-                            print(f"The maximum tenure is, {calc_max(tenure_list):0.02f} months")          
+                            print(f"The maximum tenure is, {calc_min(tenure_list):0.02f} months")          
                         elif max_choice == 2:    
-                            print(f"The maximum monthly charge is €{calc_max(monthly_costs_list):0.02f} ")
+                            print(f"The maximum monthly charge is, {calc_min(monthly_costs_list):0.02f} ")
                         elif max_choice == 3:    
                             break
                         else:
@@ -86,11 +85,11 @@ try:
                     
                     # Calculate minimum menu
                     elif choice == 2:
-                        min_choice = int(input("calculate the minimum for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu "))
+                        min_choice = int(input("calculate the minimum for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu"))
                         if min_choice == 1:    
-                            print(f"The minimum tenure is {calc_min(tenure_list):0.02f} months")          
+                            print(f"The minimum tenure is, {calc_min(tenure_list):0.02f} months")          
                         elif min_choice == 2:    
-                            print(f"The minimum monthly charge is €{calc_min(monthly_costs_list):0.02f} ")
+                            print(f"The minimum monthly charge is, {calc_min(monthly_costs_list):0.02f} ")
                         elif min_choice == 4:    
                             break
                         else:
@@ -98,11 +97,11 @@ try:
                             
                     # Calculate mean menu
                     elif choice == 3:
-                        mean_choice = input("calculate the mean for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu ")
+                        mean_choice = int(input("calculate the mean for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu"))
                         if mean_choice == 1:    
-                            print(f"The mean tenure is {calc_mean(tenure_list):0.02f} months")          
+                            print(f"The mean tenure is, {calc_mean(tenure_list):0.02f} months")          
                         elif mean_choice == 2:    
-                            print(f"The mean monthly charge is €{calc_mean(monthly_costs_list):0.02f} ")
+                            print(f"The mean monthly charge  is, {calc_mean(monthly_costs_list):0.02f} ")
                         elif mean_choice == 3:    
                             break
                         else:
@@ -110,11 +109,11 @@ try:
                             
                     # Calculate median menu
                     elif choice == 4:
-                        medians_choice = input("calculate the mean for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu ")
+                        medians_choice = int(input("calculate the mean for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu"))
                         if medians_choice == 1:    
-                            print(f"The median tenure is {calc_median(tenure_list):0.02f} months")          
+                            print(f"The median tenure is, {calc_median(tenure_list):0.02f} months")          
                         elif medians_choice == 2:    
-                            print(f"The median monthly charge is €{calc_median(monthly_costs_list):0.02f} ")
+                            print(f"The median monthly charge  is, {calc_median(monthly_costs_list):0.02f} ")
                         elif medians_choice == 3:    
                             break
                         else:
@@ -122,11 +121,11 @@ try:
                             
                      # Calculate mode menu
                     elif choice == 5:
-                        mode_choice = input("calculate the mode for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu")
+                        mode_choice = int(input("calculate the mode for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu"))
                         if mode_choice == 1:    
-                            print(f"The median mode is {calc_mode(tenure_list):0.02f} months")          
+                            print(f"The median mode is, {calc_mode(tenure_list):0.02f} months")          
                         elif mode_choice == 2:    
-                            print(f"The mode monthly charge is €{calc_mode(monthly_costs_list):0.02f} ")
+                            print(f"The mode monthly charge  is, {calc_mode(monthly_costs_list):0.02f} ")
                         elif mode_choice == 3:    
                             break
                         else:
@@ -134,11 +133,11 @@ try:
                     
                     # Calculate standard deviation menu
                     elif choice == 6:
-                        sdv_choice = input("calculate the standard deviation for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu ")
+                        sdv_choice = int(input("calculate the standard deviation for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu"))
                         if sdv_choice == 1:    
-                            print(f"The standard deviation of tenure is {calc_sdv(tenure_list):0.02f} months")          
+                            print(f"The standard deviation of tenure is, {calc_sdv(tenure_list):0.02f} months")          
                         elif sdv_choice == 2:    
-                            print(f"The standard deviation of monthly charge  is {calc_sdv(monthly_costs_list):0.02f} ")
+                            print(f"The standard deviation of monthly charge  is, {calc_sdv(monthly_costs_list):0.02f} ")
                         elif sdv_choice == 3:    
                             break
                         else:
@@ -146,11 +145,13 @@ try:
                             
                     # Calculate median skew menu
                     elif choice == 7:
-                        median_choice = input("calculate the median skew for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu ")
-                        if median_choice == 1:
-                            print(f"The median skew of tenure is {calc_median_skewness(tenure_list):0.02f} months")          
+                        median_choice = int(input("calculate the median skew for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu"))
+                        if median_choice == 1:    
+                            break
+                             #print(f"The median skew of tenure is, {calc_median_skewness(tenure_list):0.02f} months")          
                         elif median_choice == 2:
-                            print(f"The median skew of monthly charge is {calc_median_skewness(monthly_costs_list):0.02f} ")
+                            break
+                             #print(f"The median skew of monthly charge  is, {calc_median_skewness(monthly_costs_list):0.02f} ")
                         elif median_choice == 3:    
                             break
                         else:
@@ -158,11 +159,11 @@ try:
                     
                     # Calculate mode skew menu
                     elif choice == 8:
-                        mode_choice = input("calculate the mode skew for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu ")
+                        mode_choice = int(input("calculate the mode skew for the folowing (1)Tenure (2)Monthly Charge (3)Main Menu"))
                         if mode_choice == 1:    
-                            print(f"The mode skew of tenure is {calc_mode_skewness(tenure_list):0.02f} months")          
+                            print(f"The mode skew of tenure is, {calc_mode_skewness(tenure_list):0.02f} months")          
                         elif mode_choice == 2:    
-                            print(f"The mode skew of monthly charge is {calc_mode_skewness(monthly_costs_list):0.02f} ")
+                            print(f"The mode skew of monthly charge  is, {calc_mode_skewness(monthly_costs_list):0.02f} ")
                         elif mode_choice == 3:    
                             break
                         else:
@@ -334,7 +335,7 @@ try:
         output.write(f"The standard deviation is: {calc_sdv(tenure_list):0.2f}\n")
         output.write(f"The median skew is: {calc_median_skewness(tenure_list):0.2f}\n")
         output.write(f"The mode skew is: {calc_mode_skewness(tenure_list):0.2f}\n")
-        #output.write(f"The churn of month 7 is: {calc_mode_skewness(str(7),data_by_churn):0.2f}\n")
+        output.write(f"The churn of month 7 is: {calc_mode_skewness(str(7),data_by_churn):0.2f}\n")
         
         output.close()
 except FileNotFoundError:

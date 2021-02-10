@@ -4,3 +4,5 @@ The mean tenure is: 32.37
 The median tenure is: 29.00
 The mode tenure is: 1.00
 The standard deviation is: 24.56
+The median skew is: 0.41
+The mode skew is: -23.64

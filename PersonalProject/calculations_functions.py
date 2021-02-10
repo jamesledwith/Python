@@ -142,7 +142,7 @@ def calc_median(list_values):
         median = list_values[mid_index]
         return median
     else:
-        median = (list_values(list_values[mid_index -1 ] + list_values[mid_index + 1])/2)
+        median = (list_values[mid_index -1] + list_values[mid_index])/2
         return median
 
 #calculate the median skewness
@@ -161,21 +161,17 @@ def calc_median_skewness(list_values):
         The median skewness of a list.
     """
     #calculate mean
-    mean = sum(list_values) / len(list_values)
+    mean = calc_mean(list_values)
     
     #calculate median
-    sorted_list = list_values.sort()
-    mid_index = int(len(sorted_list)/2)   
-    if len(sorted_list) % 2 == 1:
-        median = sorted_list[mid_index]
-    else:
-        median = (sorted_list(sorted_list[mid_index -1 ] + sorted_list[mid_index + 1])/2)
-   
-    #standard_deviation
-    var = sum(pow(num - mean, 2) for num in list_values) / len(list_values) #variance
-    standard_deviation = sqrt(var)
+    median = calc_median(list_values)
     
-    median_skewness = 3 * (mean - median) / standard_deviation
+    #standard_deviation
+    standard_deviation = calc_sdv(list_values)
+    
+    #sknewness coefficient
+    median_skewness = (3 * (mean - median)) / standard_deviation
+    
     return median_skewness
 
 def calc_mode_skewness(list_values):
@@ -274,11 +270,10 @@ def calc_churn_rate(time_period, data_by_churn):
 
 
 
-
-
-
-
-
+if __name__ == "__main__":
+     test_list = [1,1,1,1,6,5]
+     test_list2 = [1, 1, 2, 4]
+     print("median ",calc_median(test_list2))
 
 
 
@@ -295,7 +290,4 @@ def calc_churn_rate(time_period, data_by_churn):
 #     print("median ", calc_median(test_list))
 #     print("standard deviation", calc_sdv(test_list))
 #     print("standard deviation", calc_mode_skewness(test_list))
-# 
-# 
-# 
 # =============================================================================

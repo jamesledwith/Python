@@ -30,6 +30,8 @@ def test_calc_max():
 def test_calc_median():
     assert calc_median([1,2,3,4,5]) == 3
     assert calc_median([2,2,4,6,6,6]) == 5
+    assert calc_median([1, 1, 2, 4]) == 1.5
     
 def test_calc_median_skewness():
-    assert calc_median_skewness([3,8,19,17,24,27]) == approx(0.1166, 0.04)
+    assert calc_median_skewness([3,8,19,17,24,27]) == approx(-0.5925, 0.04)
+    assert calc_median_skewness([4,53,2,23,84]) == approx(0.9772, 0.04)
