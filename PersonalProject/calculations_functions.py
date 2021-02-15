@@ -267,17 +267,6 @@ def calc_churn_rate(time_period, data_by_churn):
 
 
 
-
-
-
-if __name__ == "__main__":
-     test_list = [1,1,1,1,6,5]
-     test_list2 = [1, 1, 2, 4]
-     print("median ",calc_median(test_list2))
-
-
-
-
 # =============================================================================
 # if __name__ == "__main__":
 #     test_list = [1,1,1,1,6,5]
@@ -289,5 +278,4 @@ if __name__ == "__main__":
 #     print("max ", calc_max(test_list))
 #     print("median ", calc_median(test_list))
 #     print("standard deviation", calc_sdv(test_list))
-#     print("standard deviation", calc_mode_skewness(test_list))
 # =============================================================================

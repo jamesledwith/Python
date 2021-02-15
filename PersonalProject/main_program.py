@@ -4,8 +4,10 @@ Created on Tue Oct 27 13:49:37 2020
 
 @author: James
 """
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+import datetime
 
 # Import the functions 
 from calculations_functions import calc_mean, calc_sdv, calc_min, calc_max, calc_mode, calc_median_skewness, calc_median_skewness, convert_list_to_dictionary, calc_churn_rate, calc_median, calc_mode_skewness
@@ -18,7 +20,7 @@ data_by_churn  = {}
 
 
 #date format string
-fromat_str = "%d-%m_%Y"
+format_str = "%d/%m/%Y"
 
 # create empty lists 
 gender_list = []
@@ -35,6 +37,7 @@ confirmed_case_list = []
 total_confirmed_list = []
 confirmed_deaths_lists = []
 total_deaths_list = []
+datetime_list = []
 
 try:
     #open the files
@@ -83,6 +86,9 @@ try:
             total_confirmed_list.append(total_confirmed_covid_cases)
             confirmed_deaths_lists.append(confirmed_covid_deaths)
             total_deaths_list.append(total_covid_deaths)
+            
+            datetime_list.append(datetime.datetime.strptime(date, format_str))
+            
     
     
     while True:
@@ -216,9 +222,11 @@ try:
         
         #Matplot visualisation menu
         elif main_choice == 2:
-            v_choice = int(input(" What visualisation would you like to see (1)Piechart (2)Barchart (3)Exit"))
-            if v_choice == 3:
+            v_choice = int(input(" What visualisation would you like to see (1)Piechart (2)Barchart  (3)Dateplot (4)Exit"))
+            
+            if v_choice == 4:
                 break
+            
             elif v_choice == 1:
                 while True:
                     p_choice = int(input("See a piechart breakdown by (1)Gender (2)Internet Service (3) Contract (4)Phone Service (5)Main Menu"))
@@ -277,11 +285,12 @@ try:
                     
                     elif p_choice == 5:
                         break
+                    
                     else:
                         print("Invalid Choice")
+                                              
             elif v_choice == 2:
                 bar_choice = int(input(" What barchart for tenure would you like to see (1)unsorted (2)sorted by values (3)sorted by keys (4)Exit"))
-                
                 
                 #unsorted barchart
                 if bar_choice == 1:
@@ -345,6 +354,139 @@ try:
                 else:
                     print("Invalid choice")
                 
+                    
+            elif v_choice == 3:
+                dp_choice = int(input(" What datetime barchart for tenure would you like to see (1)Confirmed Cases (2)Total Confirmed Cases (3)Confirmed Covid Deaths (4)Total Covid Deaths (5)Exit"))
+                
+                #confirmed cases dateplot
+                if dp_choice == 1:
+                    # create a figure and an axis object
+                    fig, ax = plt.subplots()
+                    
+                    # format the ticks
+                    months = mdates.MonthLocator()  # every month
+                    ax.xaxis.set_minor_locator(months)
+                    
+                    # set the labels on the axes
+                    ax.set_xlabel("Time")
+                    ax.set_ylabel("Number of Confirmed Cases")
+                    
+                    # set the title
+                    ax.set_title("Confirmed cases")
+                    
+                    # do a date plot: mpl.dates.date2num converts date objects to mathplotlib format
+                    
+                    ax.plot_date(mpl.dates.date2num(datetime_list), confirmed_case_list, marker = ",", linestyle="-")
+                    plt.show()
+                    
+                    # save the image
+                    fig.savefig('confirmed_cases_date_plot.png', bbox_inches='tight')
+                    
+                #Total Confirmed Cases dateplot
+                elif dp_choice == 2:
+                    # create a figure and an axis object
+                    fig, ax = plt.subplots()
+                    
+                    # format the ticks
+                    months = mdates.MonthLocator()  # every month
+                    ax.xaxis.set_minor_locator(months)
+                    
+                    # set the labels on the axes
+                    ax.set_xlabel("Time")
+                    ax.set_ylabel("Number of Confirmed Cases")
+                    
+                    # set the title
+                    ax.set_title("Confirmed cases")
+                    
+                    # do a date plot: mpl.dates.date2num converts date objects to mathplotlib format
+                    
+                    ax.plot_date(mpl.dates.date2num(datetime_list), total_confirmed_list, marker = ",", linestyle="-")
+                    plt.show()
+                    
+                    # save the image
+                    fig.savefig('total_confirmed_cases_date_plot.png', bbox_inches='tight')
+            
+                #Confirmed Covid Deaths dateplot
+                elif dp_choice == 3:
+                    # create a figure and an axis object
+                    fig, ax = plt.subplots()
+                    
+                    # format the ticks
+                    months = mdates.MonthLocator()  # every month
+                    ax.xaxis.set_minor_locator(months)
+                    
+                    # set the labels on the axes
+                    ax.set_xlabel("Time")
+                    ax.set_ylabel("Number of Confirmed Covid Deaths")
+                    
+                    # set the title
+                    ax.set_title("Confirmed Covid Deaths")
+                    
+                    # do a date plot: mpl.dates.date2num converts date objects to mathplotlib format
+                    
+                    ax.plot_date(mpl.dates.date2num(datetime_list), confirmed_deaths_lists, marker = ",", linestyle="-")
+                    plt.show()
+                    
+                    # save the image
+                    fig.savefig('total_confirmed_cases_date_plot.png', bbox_inches='tight')
+                    
+                #Confirmed Covid Deaths dateplot
+                elif dp_choice == 3:
+                    # create a figure and an axis object
+                    fig, ax = plt.subplots()
+                    
+                    # format the ticks
+                    months = mdates.MonthLocator()  # every month
+                    ax.xaxis.set_minor_locator(months)
+                    
+                    # set the labels on the axes
+                    ax.set_xlabel("Time")
+                    ax.set_ylabel("Number of Confirmed Covid Deaths")
+                    
+                    # set the title
+                    ax.set_title("Confirmed Covid Deaths")
+                    
+                    # do a date plot: mpl.dates.date2num converts date objects to mathplotlib format
+                    
+                    ax.plot_date(mpl.dates.date2num(datetime_list), confirmed_deaths_lists, marker = ",", linestyle="-")
+                    plt.show()
+                    
+                    # save the image
+                    fig.savefig('total_confirmed_cases_date_plot.png', bbox_inches='tight')
+                
+                #Total Covid Deaths dateplot
+                elif dp_choice == 4:
+                    # create a figure and an axis object
+                    fig, ax = plt.subplots()
+                    
+                    # format the ticks
+                    months = mdates.MonthLocator()  # every month
+                    ax.xaxis.set_minor_locator(months)
+                    
+                    # set the labels on the axes
+                    ax.set_xlabel("Time")
+                    ax.set_ylabel("Number of Covid Deaths")
+                    
+                    # set the title
+                    ax.set_title("Total Covid Deaths")
+                    
+                    # do a date plot: mpl.dates.date2num converts date objects to mathplotlib format
+                    
+                    ax.plot_date(mpl.dates.date2num(datetime_list), total_deaths_list, marker = ",", linestyle="-")
+                    plt.show()
+                    
+                    # save the image
+                    fig.savefig('total_confirmed_cases_date_plot.png', bbox_inches='tight')
+                
+                elif dp_choice == 5:
+                    break
+                
+                else:
+                    print("Please enter a correct value")
+                
+            else:
+                print("Please enter a correct value")
+                
             
                 
 except FileNotFoundError:
@@ -361,7 +503,7 @@ try:
         output.write(f"The standard deviation is: {calc_sdv(tenure_list):0.2f}\n")
         output.write(f"The median skew is: {calc_median_skewness(tenure_list):0.2f}\n")
         output.write(f"The mode skew is: {calc_mode_skewness(tenure_list):0.2f}\n")
-        output.write(f"The churn of month 7 is: {calc_mode_skewness(str(7),data_by_churn):0.2f}\n")
+        #output.write(f"The churn of month 7 is: {calc_mode_skewness(str(7),data_by_churn):0.2f}\n")
         
         output.close()
 except FileNotFoundError:
