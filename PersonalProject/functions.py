@@ -81,7 +81,7 @@ def webtable_to_pandas(soup):
     data_new.to_csv("Webtable.csv")
     return data_new
 
-def multiple_webtables_to_pandas():
+def webtables_to_csv():
    """
     
 
@@ -97,22 +97,26 @@ def multiple_webtables_to_pandas():
 
     """
    try:
-       csv_name = input(str("name your file with .csv: "))
-       url = input(str("please enter your website: "))
+       csv_name = input(str("Name your file: "))
+       url = input(str("Please enter your websites URL: "))
     
    except:
        print("Error", url, "cannot be found")
     
    source = requests.get(url).text
    soup = BeautifulSoup(source, 'lxml')
+   
    #get table with class name
    table = soup.find("table", {"class": "wikitable"})
     
    #read table into list of dataframe objects
    dataframe = pd.read_html(str(table))
+   
    #convert the list to a pandas dataframe
    dataframe = pd.DataFrame(dataframe[0])
-   dataframe.to_csv(csv_name)
+   
+   #store the dataframe in a local csv file
+   dataframe.to_csv(csv_name + ".csv")
    return dataframe
 
     

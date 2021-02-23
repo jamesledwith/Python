@@ -4,10 +4,9 @@ Created on Wed Dec 30 13:31:34 2020
 
 @author: James
 """
-from functions import pretify_soup, find_hrefs, find_notes_href, webtable_to_pandas, multiple_webtables_to_pandas
+from functions import find_hrefs, find_notes_href, webtable_to_pandas, webtables_to_csv
 from bs4 import BeautifulSoup
 import requests
-import pandas as pd
 
 
 url = 'https://en.wikipedia.org/wiki/List_of_Irish_counties_by_population'
@@ -42,14 +41,14 @@ while True:
      
     #Web HTML scrape
     elif main_choice == 2:       
-        choice = int(input(" \n 1: notes to csv \n 2: webpage to csv \n 3: Exit Program"))   
+        choice = int(input(" \n 1: notes to csv \n 2: Webpage table to csv \n 3: Exit Program"))   
         if choice == 3:
             break
         elif choice == 1:
             print("Webtable to csv", webtable_to_pandas(soup))
             print("Notes from site was formatted then written to local Webtable.csv")
         elif choice == 2:
-            print("Webpage to csv", multiple_webtables_to_pandas())
+            print("Preview of Websites Table", webtables_to_csv())
             break
         else:
             print("invalid choice")
