@@ -4,7 +4,7 @@ Created on Wed Dec 30 13:31:34 2020
 
 @author: James
 """
-from functions import find_hrefs, find_notes_href, webtable_to_pandas, webtables_to_csv
+from functions import find_hrefs, find_notes_href, local_html_to_csv, webtables_to_csv, webpage_find_hrefs
 from bs4 import BeautifulSoup
 import requests
 
@@ -21,41 +21,45 @@ with open("index.html") as fp:
     local_soup = BeautifulSoup(fp, 'lxml') 
     
 
-#Main menu with choices
-while True:
-    main_choice = int(input("Choose your file to scrape: \n 1: Local HTML \n 2: Website \n 3: Exit Program"))
-    #Exit program
-    if main_choice == 3:
-        break
-    
-    #Local HTML data scrape
-    elif main_choice == 1:
-        choice_l = int(input("Would you like to get the \n 1: notes hyperlinks \n 2: all hyperlinks \n 3: Exit Program"))      
-        if choice_l == 3:
+    #Main menu with choices
+    while True:
+        main_choice = int(input("Choose your file to scrape: \n 1: Local HTML \n 2: Website \n 3: Exit Program"))
+        #Exit program
+        if main_choice == 3:
             break
-        elif choice_l == 1:
-            print("The hyperlinks are", find_notes_href(soup))
-        elif choice_l == 2:
-            print("notes hyperlink is", find_hrefs(local_soup))
-            
-     
-    #Web HTML scrape
-    elif main_choice == 2:       
-        choice = int(input(" \n 1: notes to csv \n 2: Webpage table to csv \n 3: Exit Program"))   
-        if choice == 3:
-            break
-        elif choice == 1:
-            print("Webtable to csv", webtable_to_pandas(soup))
-            print("Notes from site was formatted then written to local Webtable.csv")
-        elif choice == 2:
-            print("Preview of Websites Table", webtables_to_csv())
-            break
+        
+        #Local HTML data scrape
+        elif main_choice == 1:
+            choice_l = int(input("Would you like to get the \n 1: notes hyperlinks \n 2: all  \n 2: all hyperlinks  \n 4: Exit Program"))      
+            if choice_l == 4:
+                break
+            elif choice_l == 1:
+                print("The hyperlinks are", find_notes_href(soup))
+            elif choice_l == 2:
+                print("notes hyperlink is", find_hrefs(local_soup))
+            elif choice_l == 2:
+                print("Webtable to csv", local_html_to_csv(soup))
+                print("Notes from site was formatted then written to local Webtable.csv file")
+            else:
+                print("invalid choice")
+                
+         
+        #Web HTML scrape
+        elif main_choice == 2:       
+            choice = int(input(" \n 1: Extract links \n 2: Webpage table to csv \n 3: Exit Program"))   
+            if choice == 3:
+                break
+            elif choice == 1:
+                webpage_find_hrefs()
+                
+            elif choice == 2:
+                print("Preview of Websites Table", webtables_to_csv())
+                print("Table was sucessfully scraped then written to a local csv file")
+            else:
+                print("invalid choice")
+                
         else:
             print("invalid choice")
-            break
-    else:
-        print("invalid choice")
-        break
 
 
 
