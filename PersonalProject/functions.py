@@ -55,8 +55,6 @@ def find_notes_href(soup):
             
 def local_html_to_csv(soup):
     """
-    
-
     Parameters
     ----------
     soup : BeautifulSoup Object
@@ -83,14 +81,7 @@ def local_html_to_csv(soup):
     return data_new
 
 def webtables_to_csv():
-   """
-    
-
-    Parameters
-    ----------
-    soup : BeautifulSoup Object
-        Soup object containing a table.
-
+   """  
     Returns
     -------
     dataframe : Dataframe

@@ -30,33 +30,34 @@ with open("index.html") as fp:
         
         #Local HTML data scrape
         elif main_choice == 1:
-            choice_l = int(input("Would you like to get the \n 1: notes hyperlinks \n 2: all  \n 2: all hyperlinks  \n 4: Exit Program"))      
-            if choice_l == 4:
-                break
-            elif choice_l == 1:
-                print("The hyperlinks are", find_notes_href(soup))
-            elif choice_l == 2:
-                print("notes hyperlink is", find_hrefs(local_soup))
-            elif choice_l == 2:
-                print("Webtable to csv", local_html_to_csv(soup))
-                print("Notes from site was formatted then written to local Webtable.csv file")
-            else:
-                print("invalid choice")
+            while True:
+                choice_l = int(input("Would you like to get the \n 1: Notes Section Hyperlinks \n 2: All Hyperlinks  \n 3: Table to csv  \n 4: Main Menu"))      
+                if choice_l == 4:
+                    break
+                elif choice_l == 1:
+                    print("The hyperlinks are :", find_notes_href(soup))
+                elif choice_l == 2:
+                    print("The Notes section hyperlinks are: ", find_hrefs(local_soup))
+                elif choice_l == 3:
+                    print("Webtable to csv", local_html_to_csv(soup))
+                    print("Notes from site was formatted then written to local Webtable.csv file")
+                else:
+                    print("invalid choice")
                 
          
-        #Web HTML scrape
-        elif main_choice == 2:       
-            choice = int(input(" \n 1: Extract links \n 2: Webpage table to csv \n 3: Exit Program"))   
-            if choice == 3:
-                break
-            elif choice == 1:
-                webpage_find_hrefs()
-                
-            elif choice == 2:
-                print("Preview of Websites Table", webtables_to_csv())
-                print("Table was sucessfully scraped then written to a local csv file")
-            else:
-                print("invalid choice")
+        #Web HTML data scrape
+        elif main_choice == 2:      
+            while True:
+                choice = int(input(" \n 1: Extract Hyperlinks \n 2: Webpage table to csv \n 3: Main Menu"))   
+                if choice == 3:
+                    break
+                elif choice == 1:
+                    webpage_find_hrefs()   
+                elif choice == 2:
+                    print("Preview of Websites Table", webtables_to_csv())
+                    print("Table was sucessfully scraped then written to a local csv file")
+                else:
+                    print("invalid choice")
                 
         else:
             print("invalid choice")
